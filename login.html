@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>User Logon</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="Login.css" type="text/css"/>
+
+    </head>
+    <body>
+        <div id="fullHeightContainer">
+            <div class="loginHeader">
+                    <div class="emblemBox">
+                    </div>
+                    <div class="box">
+                        <div class="boxContent uniName">
+                            <div class="uniName">Taylor University</div>
+                        </div>
+                        <div class="boxContent motto">
+                            <div class="motto">You're learnin we're earnin</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="pageBody">
+                <div class="bodybox">
+                    <div id="loginContainer">
+                        <div class="loginLabel">User Login</div>
+                        <div id="fieldHolder">
+                            <div class="loginCluster">
+                                <form id="loginForm" method="post" action="login.php">
+                                <div id="error">Incorrect UserName or password</div>    
+                                <label class="usrLabel">Username</label><br>
+                                <input class="usrField" id="usr" name="usr" type="text"/><br><br>
+                                <label class="pswdLabel">Password</label></br>
+                                <input class="pswdField" id="pswd" name="pswd" type="password"/><br><br>
+                                <input class="loginButton" type="submit" id="loginButton" name="loginButton" value="Submit" />
+                           
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </div>  
+        </div>
+        <script>
+               function getUrlVars() 
+            {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, 
+                function(m,key,value) 
+                {
+                    vars[key] = value;
+                });
+                return vars;
+            }
+            
+            function show(id)
+            {
+              //alert("cheked the button - worked");
+              document.getElementById(id).style.display= 'block' ;
+            }
+            
+            if(getUrlVars()['attempt'] > 0)
+            {
+                show('error')
+            }
+
+    </script>
+    </body>
+    
+</html>
