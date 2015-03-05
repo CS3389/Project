@@ -6,13 +6,13 @@ $userName = strtolower($_POST['usr']);
 $pswd = $_POST['pswd'];
 $user = 'root';
 $password = 'root';
-$db = 'Db1';
+$db = "TaylorU";
 $host = 'localhost';
-$port = 8889;
+$port = 3306;
 $loginDest = 'dashboard.php';
 $attempt = 1;
 
-$conn ="mysql:host=localhost;dbname=Db1";
+$conn ="mysql:host=localhost;dbname=TaylorU";
 
 try{
                 
