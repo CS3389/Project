@@ -7,18 +7,28 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="application.css" type="text/css"/>
         <title>TaylorU Online Application</title>
     </head>
     <body>
         <?php
         // put your code here
         ?>
-        <style>
-         body     {margin: 20px;}
-    	 fieldset {margin-top: 20px;
-                   margin-bottom: 20px;}
-    </style>
-      
+   <div id="wrapper">   
+    <div class="loginHeader">
+            <div class="emblemBox">
+            </div>
+              <div class="box">
+                 <div class="boxContent uniName">
+                    <div class="uniName">Taylor University</div>
+                 </div>
+                 <div class="boxContent motto">
+                     <div class="motto">You're learnin we're earnin</div>
+                 </div>
+               </div>
+     </div>
+    
+    <div id="mainwrapper">
     <p style="color:red">* required field</p>
       <form method="post" action="ApplyController.php">
 	<fieldset>
@@ -123,11 +133,13 @@
                  
                </table>
             </fieldset>
-          <br><br>
+          <br>
           <input type="submit" value="Submit Application">
       </form>
-    <br><br>
+    <br>
     <a href="login.html">Cancel</a>
+    </div>
+   </div>
     </body>
 </html>
 
