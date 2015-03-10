@@ -47,6 +47,14 @@
     margin: auto;
     width: 100%;
 }
+.left{
+    width:50%;
+}
+
+.right{
+    width:50%;
+    float:right;
+}
 .boxContent .motto {
     height: 25%;
     margin: auto;
@@ -108,7 +116,7 @@
     margin-left: 5px;
     padding: 4px 0 4px 4px;
     vertical-align: middle;
-    width: 45%;
+    width: 100%;
     font-size: 15px;
 }
 .usrLabel {
