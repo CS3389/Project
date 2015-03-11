@@ -85,7 +85,7 @@
     width: 100%;
 }
 .bodybox {
-    background: url("Images/LoginBkd.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: url("http://localHost:8888/Images/LoginBkd.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
     height: auto;
     min-height: 100%;
     padding-top: 20px;

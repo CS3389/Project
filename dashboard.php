@@ -53,7 +53,7 @@ $dsp = new Display();
     
     function showSubWindow(id)
     {
-        document.getElementById('windowContainer').innerHTML =;
+        document.getElementById('windowContainer').innerHTML = "<div style='color:white'>test</div>";
     }
     
 </script>

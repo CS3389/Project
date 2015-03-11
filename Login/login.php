@@ -9,7 +9,7 @@ $password = 'root';
 $db = "TaylorU";
 $host = 'localhost';
 $port = 3306;
-$loginDest = 'dashboard.php';
+$loginDest = 'http://localhost:8888/Project/dashboard.php';
 $attempt = 1;
 
 $conn ="mysql:host=localhost;dbname=TaylorU";
