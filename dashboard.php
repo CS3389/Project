@@ -38,13 +38,13 @@ $dsp = new Display();
                     </div>
             </div>
         <div class="pageBody">
+            <div id="windowContainer">
+            </div>
+            
             <div id="menuContainer">
                 <?php echo $dsp->displayMenu($_SESSION['usr_role']);?>
             </div>
-            <div id="windowContainer">
-                
-            </div>
-        </div>
+    </div>
     </div>
 </body>
 </html>
@@ -53,7 +53,7 @@ $dsp = new Display();
     
     function showSubWindow(id)
     {
-        document.getElementById('windowContainer').innerHTML = "<div style='color:white'>test</div>";
+        this.document.getElementById('windowContainer').innerHTML = ;
     }
     
 </script>

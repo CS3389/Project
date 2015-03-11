@@ -54,4 +54,6 @@
 
 #windowContainer{
     height:100%;
+    float:right;
+    width:80%;
 }
