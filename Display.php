@@ -46,16 +46,44 @@ class Display {
     function generateAdminMenu()
     {
         return'<table id="MenuTable">'.$this->generateMenuRow('Student').$this->generateMenuRow('Classes')
-                .$this->generateMenuRow('Grades').'</table>';
+                .$this->generateMenuRow('Grades').$this->generateMenuRow('FinancialAid').'</table>';
     }
     
     function generateMenuItem($str)
     {
-        return '<div class="MenuItemClass"><button id="'.$str.'Button" class="menuButton" onClick="showSubWindow()">'.$str.'</button></div>';
+        return '<div class="MenuItemClass"><button id="'.$str.'Button" class="menuButton" onClick="showSubWindow(this.id)">'.$str.'</button></div>';
     }
     
     function generateMenuRow($str)
     {
         return '<tr><td>'.$this->generateMenuItem($str).'</td></tr>';
     }
+    
+    function generateStudentWindow()
+    {
+        return include '';
+    }
+    
+    function showWindow($str)
+    {
+        
+        switch($str)
+        {
+            case 'StudentButton':
+                return generateStudentWindow();
+                
+            case 'GradesButton':
+                return generateGradesWindow();
+                
+            case 'FinancialAidButton':
+                return generateFinancialAidWindow();
+                
+            case 'ClassButton':
+                return generateClassWindow();
+                
+            default:
+                break;
+        }
+    }
+    
 }

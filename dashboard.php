@@ -18,7 +18,7 @@ $dsp = new Display();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="Login.css" type="text/css"/>
+<link rel="stylesheet" href="Login/Login.css" type="text/css"/>
 <link rel='stylesheet' href='dashboard.css' type='text/css'/>
 <title>Home Page</title>
 </head>
@@ -48,3 +48,12 @@ $dsp = new Display();
     </div>
 </body>
 </html>
+
+<script>
+    
+    function showSubWindow(id)
+    {
+        document.getElementById('windowContainer').innerHTML =;
+    }
+    
+</script>
