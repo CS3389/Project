@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="advisor.css" type="text/css"/>
     </head>
 <body>
-    
+    <img src="images/taylorUbanner.jpg">
   <?php
     $pdo = new PDO($connString, $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
