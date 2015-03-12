@@ -2,7 +2,10 @@
 
 <html>
     <body>
+        <h1><img src="images/taylorUbanner.jpg" alt="Taylor University"></h1>
         <form method='post' action='AddUser2.php'  border='0'>
+            <legend>New User Information</legend>
+            
             <table>
                 <tr>
                     <td>Username</td>
