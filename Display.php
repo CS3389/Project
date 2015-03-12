@@ -23,19 +23,19 @@ class Display {
             break;
         
             case 'ADVISOR':
-                return generateAdvisorMenu();
+                return $this->generateAdvisorMenu();
             break;
         
             case 'STUDENT':
-                return generateStudentMenu();
+                return $this->generateStudentMenu();
             break;
         
             case 'FINANCIAL AID':
-                return generateFAIDMenu();
+                return $this->generateFAIDMenu();
             break;
         
             case 'ACADEMIC FAC':
-                return generateAcaFMenu();
+                return $this->generateAcaFMenu();
             break;
         
             default:
@@ -43,25 +43,57 @@ class Display {
         }
     }
     
-    function generateAdminMenu()
+    private function generateAdminMenu()
     {
         return'<table id="MenuTable">'.$this->generateMenuRow('Student').$this->generateMenuRow('Classes')
                 .$this->generateMenuRow('Grades').$this->generateMenuRow('FinancialAid').'</table>';
     }
     
-    function generateMenuItem($str)
+    private function generateStudentMenu()
+    {
+        return'<table id="MenuTable">'.$this->generateMenuRow('Student').$this->generateMenuRow('Classes')
+                .$this->generateMenuRow('Grades').$this->generateMenuRow('FinancialAid').'</table>';
+    }
+    
+    private function generateFAIDMenu()
+    {
+        return'<table id="MenuTable">'.$this->generateMenuRow('Student').$this->generateMenuRow('Classes')
+                .$this->generateMenuRow('Grades').$this->generateMenuRow('FinancialAid').'</table>';
+    }
+    
+    private function generateAdvisorMenu()
+    {
+        return'<table id="MenuTable">'.$this->generateMenuRow('Student').$this->generateMenuRow('Classes')
+                .$this->generateMenuRow('Grades').$this->generateMenuRow('FinancialAid').'</table>';
+    }
+    
+    private function generateAcaFMenu()
+    {
+        return'<table id="MenuTable">'.$this->generateMenuRow('Student').$this->generateMenuRow('Classes')
+                .$this->generateMenuRow('Grades').$this->generateMenuRow('FinancialAid').'</table>';
+    }
+    
+    
+    
+    private function generateMenuItem($str)
     {
         return '<div class="MenuItemClass"><button id="'.$str.'Button" class="menuButton" onClick="showSubWindow(this.id)">'.$str.'</button></div>';
     }
     
-    function generateMenuRow($str)
+    private function generateMenuRow($str)
     {
         return '<tr><td>'.$this->generateMenuItem($str).'</td></tr>';
     }
     
-    function generateStudentWindow()
+    private function generateWindow($filename)
     {
-        return include '';
+        $filename = "templates/".$filename;
+        $handle = fopen($filename, "r");
+        // Retrieve the content of HTML file, and stocks it into $contents var
+        $contents = fread($handle, filesize($filename));
+        fclose($handle);
+        $output = str_replace(array("\r\n", "\r", "\n", "\s", "\t", "\0", "\x0B"), "", $contents);
+        return $output;
     }
     
     function showWindow($str)
@@ -69,17 +101,17 @@ class Display {
         
         switch($str)
         {
-            case 'StudentButton':
-                return generateStudentWindow();
+            case 'student':
+                return $this->generateWindow("StudentWindow.html");
                 
-            case 'GradesButton':
-                return generateGradesWindow();
+            case 'grades':
+                return $this->generateWindow("GradesWindow.html");
                 
-            case 'FinancialAidButton':
-                return generateFinancialAidWindow();
+            case 'financialAid':
+                return $this->generateWindow("FinAidWindow.html");
                 
-            case 'ClassButton':
-                return generateClassWindow();
+            case 'class':
+                return $this->generateWindow("ClassWindow.html");
                 
             default:
                 break;

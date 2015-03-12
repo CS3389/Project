@@ -53,7 +53,27 @@ $dsp = new Display();
     
     function showSubWindow(id)
     {
-        this.document.getElementById('windowContainer').innerHTML = ;
+       var ele = document.getElementById('windowContainer')
+       
+       switch(id)
+       {
+           case 'StudentButton':
+               ele.innerHTML = '<?php echo $dsp->showWindow('student') ?>';
+               break;
+           case 'ClassesButton':
+               ele.innerHTML = '<?php echo $dsp->showWindow('class') ?>';
+               break;
+            case 'GradesButton':
+               ele.innerHTML = '<?php echo $dsp->showWindow('grades') ?>';
+               break; 
+            case 'FinancialAidButton':
+               ele.innerHTML = '<?php echo $dsp->showWindow('financialAid') ?>';
+               break;   
+       }
+       
+       
+        
+        
     }
     
 </script>
