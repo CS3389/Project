@@ -5,9 +5,10 @@
 */
 
 
- body     {background-image: url(background.jpg);
+ body     {background-image: url(images/background.jpg);
            background-color: #FFFFFF; 
            margin: 20px;}
+ 
  fieldset {margin-top: 20px;
            margin-bottom: 20px;}
  
