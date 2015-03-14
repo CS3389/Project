@@ -56,14 +56,17 @@
     var hr = new XMLHttpRequest();
     // Create some variables we need to send to our PHP file
     var url = "deleteUser.php";
-    var usr = document.getElementById('UN-'+id).innerHTML;alert(usr);
+    var usr = document.getElementById('UN-'+id).innerHTML; alert(usr);
     var vars = "userName="+usr;alert(vars);
     hr.open("POST", url, true);
     // Set content type header information for sending url encoded variables in the request
     hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     // Access the onreadystatechange event for the XMLHttpRequest object
-    hr.onreadystatechange = function() {alert(hr.readystate); alert(hr.status);
-	    if(hr.readyState == 4 && hr.status == 200) {
+    hr.onreadystatechange = function()
+    {
+        alert(hr.readystate); alert(hr.status);
+	    if(hr.readyState == 4 && hr.status == 200) 
+            {
 		    var return_data = hr.responseText;
 			alert(hr.responseText);
                         window.location.reload();
