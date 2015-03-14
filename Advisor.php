@@ -2,7 +2,21 @@
         $connString = "mysql:host=localhost;dbname=TaylorU";
         $user ="root";
         $pass ="root";
+        
+        ?>
+<?php
+        
+        if(isset($_GET['delete_id']))
+    {
+        $pdo = new PDO($connString, $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+        $sql="DELETE FROM application WHERE applicationId=".$_GET['delete_id'];
+        $result = $pdo->query($sql);
+        header("Location: Advisor.php");
+    }
  ?>
+
 <!DOCTYPE html>
  
 <html>
@@ -11,15 +25,28 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="advisor.css" type="text/css"/>
+        
     </head>
 <body>
-    <img src="images/taylorUbanner.jpg">
-  <?php
-    $pdo = new PDO($connString, $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      
-    $sql = "select * from application";
-    $result = $pdo->query($sql); 
+     <div id="wrapper">   
+    <div class="loginHeader">
+            <div class="emblemBox">
+            </div>
+              <div class="box">
+                 <div class="boxContent uniName">
+                    <div class="uniName">Taylor University</div>
+                 </div>
+                 <div class="boxContent motto">
+                     <div class="motto">You're learnin we're earnin</div>
+                 </div>
+               </div>
+     </div>
+    <?php
+        $pdo = new PDO($connString, $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "select * from application";
+        $result = $pdo->query($sql); 
    ?>
     
     <h1>Applications</h1>    
@@ -40,11 +67,20 @@
             <li><b>Major: </b><?php echo $val['major']; ?></a></li>
             <li><b>Minor: </b><?php echo $val['minor']; ?></a></li>         
             
-            <form>
-            <input type="button" name="enroll" value="Enroll">
-            <input type="button" name="deny" value="Deny">
-            </form>
+            <a href="Advisor.php?delete_id=<?php echo $val['applicationId']?>" onclick="return confirm('Are you sere?'); " >Deny</a>
             
-            </ul></div><?php endwhile; ?></form>
+            
+            <button id="enrollButton" onclick="enroll('<?php echo $val['applicationId']?>')">Enroll</button>
+            <button id="DenyButton" onclick="deny('<?php echo $val['applicationId']?>')">Deny</button> 
+        </ul></div>
+    <?php endwhile; ?>
 </body>
 </html>
+
+<script>
+
+//function enroll(appId) 
+//{
+//    
+//}
+</script>
