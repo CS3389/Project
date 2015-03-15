@@ -16,15 +16,15 @@
     }
 ?>
 <?php
-    
     if(isset($_POST['add_user']))
     {            
         $pdo = new PDO($conn, $user, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
         
         if($val['applicationId'] < 10)
         {
             $studentNum = $val['DOB'].'00'.$val['applicationId'];
+            echo ($studentNum);
         }
         if($val['applicationId'] <= 10)
         {
