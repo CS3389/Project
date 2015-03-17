@@ -45,7 +45,7 @@
                      
                    </tr> 
                    <tr>
-                     <td>Date of Birth:</td>
+                     <td>Date of Birth: (mm/dd/yyyy)</td>
                      <td><input type="text" name="dob"><a style="color:red">&nbsp;*</a></td>
                  </tr>
                  
