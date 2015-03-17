@@ -34,7 +34,6 @@
         $result = $pdo->query($sql);
     }
  ?>
-
 <!DOCTYPE html>
  
 <html>
@@ -87,14 +86,18 @@
             <li><b>Major: </b><?php echo $val['major']; ?></a></li>
             <li><b>Minor: </b><?php echo $val['minor']; ?></a></li>        
             
+            <?php $month= substr($val['dob'], 0, 2);
+                  $year=substr($val['dob'], 8, 2);
+            ?>
+            
             <!buttons to delete from application table and create a user >
             <a href="Advisor.php?add_user=<?php if($val['applicationId'] < 10)
                     {
-                       echo $val['dob'].'00'.$val['applicationId'];
+                       echo $year.$month.'000'.$val['applicationId'];//yymm####
                     }
                     if($val['applicationId'] >= 10)
                     {
-                       echo $val['dob'].'0'.$val['applicationId'];
+                       echo $month.$year.'00'.$val['applicationId'];
                     }
                 ?>" onclick="return confirm('Are you sure you enroll this person?');" ><button>Enroll</button></a>
             <a href="Advisor.php?delete_id=<?php echo $val['applicationId']?>" onclick="return confirm('Are you sure you want to delete this application?'); " ><button>Deny</button></a>
