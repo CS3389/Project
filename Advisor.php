@@ -1,8 +1,7 @@
-<?php
+ <?php
     $connString = "mysql:host=localhost;dbname=TaylorU";
     $user ="root";
     $pass ="root";
-        
 ?>
 <?php
     if(isset($_GET['delete_id']))
@@ -10,30 +9,35 @@
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
-        $sql="DELETE FROM application WHERE applicationId=".$_GET['delete_id'];
+        $sql="DELETE FROM tayloru.application WHERE applicationId=".$_GET['delete_id'];
         $result = $pdo->query($sql);
         header("Location: Advisor.php");
     }
 ?>
 <?php
-    if(isset($_POST['add_user']))
-    {            
-        $pdo = new PDO($conn, $user, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
+    if(isset($_GET['add_user']))
+    {              
+        $pdo = new PDO($connString, $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        if($val['applicationId'] < 10)
+        if($_GET['add_user'] < 10)
         {
-            $studentNum = $val['DOB'].'00'.$val['applicationId'];
-            echo ($studentNum);
+            $studentNum = $val['DOB'].'00'.$_GET['add_user'];
         }
-        if($val['applicationId'] <= 10)
+        if($_GET['add_user'] >= 10)
         {
-            $studentNum = $val['DOB'].'0'.$val['applicationId'];
-        }
+            $studentNum = $val['DOB'].'0'.$_GET['add_user'];
+        }  
         
-        $sql = "INSERT INTO user ('UsrName', 'Password', 'Role')
-        VALUES ('$studentNum', 'pass', 'student')";
-        $pdo->exec($sql);
+        $sql = "INSERT INTO tayloru.user (`UsrName`, `Password`, `Role`)
+        VALUES ('".$studentNum."', 'pass', 'student');";
+        $result = $pdo->query($sql);
+        
+        if($pdo->exec($sql) !== 1)
+        {
+          echo  $pdo->errorInfo().'help me';
+        }
+        header("Location: Advisor.php");
     }
  ?>
 
@@ -68,9 +72,10 @@
         $result = $pdo->query($sql); 
     ?>
    
-    <h1>Applications</h1>    
+    <h1>Applications</h1>  
     
     <?php while($val=$result->fetch()): ?>
+    
         <input class="toggle-box" id="<?php echo $val['applicationId']; ?>" type="checkbox" >
         <label for="<?php echo $val['applicationId']; ?>"><b>ID: </b><?php echo $val['applicationId'];  ?>
                 <b>Name: </b><?php echo $val['firstName']." ".$val['lastName'];  ?></label>
@@ -90,5 +95,7 @@
             <a href="Advisor.php?delete_id=<?php echo $val['applicationId']?>" onclick="return confirm('Are you sure you want to delete this application?'); " ><button>Deny</button></a>
         </ul></div>
     <?php endwhile; ?>
+        
+    </form>
 </body>
 </html>
