@@ -1,9 +1,15 @@
- <?php
+<!Advisor class to display application, delete application, and create user.
+     Created by Robert Vines > 
+
+<?php
+    //database connection
     $connString = "mysql:host=localhost;dbname=TaylorU";
     $user ="root";
     $pass ="root";
 ?>
 <?php
+    //delete application by id(deny button)
+
     if(isset($_GET['delete_id']))
     {
         $pdo = new PDO($connString, $user, $pass);
@@ -15,6 +21,7 @@
     }
 ?>
 <?php
+    //add user(enroll button)
     if(isset($_GET['add_user']))
     {              
         $pdo = new PDO($connString, $user, $pass);
@@ -27,7 +34,6 @@
         $result = $pdo->query($sql);
     }
  ?>
-
 <!DOCTYPE html>
  
 <html>
@@ -53,6 +59,7 @@
       </div>
         
     <?php
+        //get info from application
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -61,7 +68,7 @@
     ?>
    
     <h1>Applications</h1>  
-    
+    <!display information from application table >
     <?php while($val=$result->fetch()): ?>
     
         <input class="toggle-box" id="<?php echo $val['applicationId']; ?>" type="checkbox" >
@@ -78,20 +85,24 @@
             <li><b>Other College Attended: </b><?php echo $val['otherCollegeAtt']; ?></a></li>
             <li><b>Major: </b><?php echo $val['major']; ?></a></li>
             <li><b>Minor: </b><?php echo $val['minor']; ?></a></li>        
-
+            
+            <?php $month= substr($val['dob'], 0, 2);
+                  $year=substr($val['dob'], 8, 2);
+            ?>
+            
+            <!buttons to delete from application table and create a user >
             <a href="Advisor.php?add_user=<?php if($val['applicationId'] < 10)
                     {
-                       echo $val['dob'].'00'.$val['applicationId'];
+                       echo $year.$month.'000'.$val['applicationId'];//yymm####
                     }
                     if($val['applicationId'] >= 10)
                     {
-                       echo $val['dob'].'0'.$val['applicationId'];
+                       echo $month.$year.'00'.$val['applicationId'];
                     }
                 ?>" onclick="return confirm('Are you sure you enroll this person?');" ><button>Enroll</button></a>
             <a href="Advisor.php?delete_id=<?php echo $val['applicationId']?>" onclick="return confirm('Are you sure you want to delete this application?'); " ><button>Deny</button></a>
         </ul></div>
     <?php endwhile; ?>
-        
-    </form>
+
 </body>
 </html>

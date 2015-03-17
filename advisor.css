@@ -1,24 +1,18 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : Mar 11, 2015, 12:29:08 PM
     Author     : Robert
 */
  #wrapper { background-color: #FFFFFF;
-
             margin-left: auto;
             margin-right: auto;}
  
 .loginHeader { background: none repeat scroll 0 0 #140399;
                border: 2px solid #fff;
-                color: #fff;
-                height: 100px;
-                margin: auto;
-                vertical-align: top;
-                width: 98.5%;}
+               color: #fff;
+               height: 100px;
+               margin: auto;
+               vertical-align: top;
+               width: 98.5%;}
 
 .emblemBox div { float: left;
                  width: 100px;}
@@ -49,8 +43,6 @@ and open the template in the editor.
          font-weight: 300;
          text-align: center;
          vertical-align: bottom;}
-
-
 
 div#page { height: 200px;
            padding-top: 50px;
