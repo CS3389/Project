@@ -32,12 +32,6 @@
         $sql = "INSERT INTO tayloru.user (`UsrName`, `Password`, `Role`)
         VALUES ('".$studentNum."', 'pass', 'student');";
         $result = $pdo->query($sql);
-        
-        if($pdo->exec($sql) !== 1)
-        {
-          echo  $pdo->errorInfo().'help me';
-        }
-        header("Location: Advisor.php");
     }
  ?>
 
