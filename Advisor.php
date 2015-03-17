@@ -20,17 +20,10 @@
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        if($_GET['add_user'] < 10)
-        {
-            $studentNum = $val['DOB'].'00'.$_GET['add_user'];
-        }
-        if($_GET['add_user'] >= 10)
-        {
-            $studentNum = $val['DOB'].'0'.$_GET['add_user'];
-        }  
+        $studentNum = $_GET['add_user'];
         
         $sql = "INSERT INTO tayloru.user (`UsrName`, `Password`, `Role`)
-        VALUES ('".$studentNum."', 'pass', 'student');";
+                VALUES ('".$studentNum."', 'pass', 'student');";
         $result = $pdo->query($sql);
     }
  ?>
@@ -62,7 +55,7 @@
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "select * from application";
+        $sql = "select * from tayloru.application";
         $result = $pdo->query($sql); 
     ?>
    
@@ -83,9 +76,17 @@
             <li><b>High School Grad: </b><?php echo $val['highSchoolGrad']; ?></a></li>
             <li><b>Other College Attended: </b><?php echo $val['otherCollegeAtt']; ?></a></li>
             <li><b>Major: </b><?php echo $val['major']; ?></a></li>
-            <li><b>Minor: </b><?php echo $val['minor']; ?></a></li>         
+            <li><b>Minor: </b><?php echo $val['minor']; ?></a></li>        
 
-            <a href="Advisor.php?add_user=<?php echo $val['applicationId']?>" onclick="return confirm('Are you sure you enroll this person?');" ><button>Enroll</button></a>
+            <a href="Advisor.php?add_user=<?php if($val['applicationId'] < 10)
+                    {
+                        echo $val['dob'].'00'.$val['applicationId'];
+                    }
+                    if($val['applicationId'] >= 10)
+                    {
+                       echo $val['dob'].'0'.$val['applicationId'];
+                    }
+                ?>" onclick="return confirm('Are you sure you enroll this person?');" ><button>Enroll</button></a>
             <a href="Advisor.php?delete_id=<?php echo $val['applicationId']?>" onclick="return confirm('Are you sure you want to delete this application?'); " ><button>Deny</button></a>
         </ul></div>
     <?php endwhile; ?>
