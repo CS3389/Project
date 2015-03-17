@@ -51,6 +51,7 @@
               </div>
               </div>
       </div>
+        
     <?php
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -80,7 +81,7 @@
 
             <a href="Advisor.php?add_user=<?php if($val['applicationId'] < 10)
                     {
-                        echo $val['dob'].'00'.$val['applicationId'];
+                       echo $val['dob'].'00'.$val['applicationId'];
                     }
                     if($val['applicationId'] >= 10)
                     {
