@@ -38,13 +38,19 @@
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $sql = "INSERT INTO tayloru.student (`firstName`, `lastName`, `dob`, `address`, `gender`,
-                `actScore`, `phoneNumber`, `highSchoolAtt`, `highSchoolGrad`, `highSchoolGPA`,
-                `otherCollegeAtt`, `major`, `minor`, `currentGPA`, `classification`, `dateEnrolled`)
-                VALUES ('$fName', '', '', '', '',
-                '', '', '', '',
-                '', '', '', '',
-                '', '', '');";
+        date_default_timezone_set('America/Chicago');
+        $date = date('m-d-Y H:i:s');
+        
+        $id = substr( $_GET['add_user'], 5, 8);
+        
+        $sql = "INSERT INTO tayloru.student (firstName, lastName, dob, address,
+            gender, actScore, phoneNumber, highSchoolAtt, highSchoolGrad,
+            highSchoolGPA, otherCollegeAtt, major, minor, classification,
+            dateEnrolled)
+            SELECT firstName, lastName, dob, address, gender, actScore, phoneNumber,
+            highSchoolAtt, highSchoolGrad, highSchoolGPA, otherCollegeAtt, major,
+            minor, 'freshmen', '".$date."' FROM tayloru.application
+            WHERE applicationId=".$id;
         $result = $pdo->query($sql);
     }
     if (isset($_GET['add_user']))
@@ -87,7 +93,6 @@
         //get info from application
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $sql = "SELECT * FROM tayloru.application";
         $result = $pdo->query($sql); 
     ?>
