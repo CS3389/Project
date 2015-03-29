@@ -1,4 +1,4 @@
-<!Advisor class to display application, delete application, and create user.
+<!Advisor class to display application, delete application, and create user and student.
      Created by Robert Vines > 
 
 <?php
@@ -31,9 +31,7 @@
         $sql = "INSERT INTO tayloru.user (`UsrName`, `Password`, `Role`)
                 VALUES ('".$studentNum."', 'pass', 'student');";
         $result = $pdo->query($sql);
-    }
-    if (isset($_GET['add_user']))
-    {   
+  
         //add enrolled student to student table
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -52,9 +50,7 @@
             minor, 'freshmen', '".$date."' FROM tayloru.application
             WHERE applicationId=".$id;
         $result = $pdo->query($sql);
-    }
-    if (isset($_GET['add_user']))
-    {
+
         //delete enrolled student from applicaiton table 
         $pdo = new PDO($connString, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
