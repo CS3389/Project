@@ -110,7 +110,7 @@ class Student
                 . " '".$date."');";
      
         $pdo->exec($sql);
-        mysql_close($pdo);
+       
        
         
         // Notify admin of new application?
