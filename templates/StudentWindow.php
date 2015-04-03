@@ -1,4 +1,11 @@
+<?php 
 
+include "User.php";
+
+$usr = new User($_SESSION["session_username"],null,$_SESSION["usr_role"]);
+
+
+?>
 <div id="studentContainer">
         <div class="searchCluster">
                 <div>
@@ -30,13 +37,27 @@
             <div>
                 <div id="resContainer">
                     <div class="resultsFieldGroup">
-                        <input id="frsName" name="frsName" type="text" >
-                        <input id="lstName" name="lstName" type="text" >
-                        <input id="idbox" name="idbox" type="text" >
+                        <?php
+                        
+                        if(!$usr->isAuthorizdToEdit($_SESSION["usr_role"]))
+                        {
+                            echo "<input id=\"frsName\" name=\"frsName\" type=\"text\" >
+                        <input id=\"lstName\" name=\"lstName\" type=\"text\" >
+                        <input id=\"idbox\" name=\"idbox\" type=\"text\" disabled >";
+                        }
+                        else
+                        {
+                            echo "<input id=\"frsName\" name=\"frsName\" type=\"text\" >
+                        <input id=\"lstName\" name=\"lstName\" type=\"text\" >
+                        <input id=\"idbox\" name=\"idbox\" type=\"text\" >";
+                        }
+                        
+                        
+                        ?>
                     </div>
                 </div>
 
 </div>
 
  
-     
+

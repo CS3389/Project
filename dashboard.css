@@ -1,3 +1,27 @@
+.submit{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#gradesLabel{
+    width:50%;
+    height:100%;
+    float:right;
+    position: relative;
+}
+
+.labelDiv{
+    width:200px;
+    padding-left:80px;
+}
+
+.resultsFieldGroup{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
 #MenuTable{
     background-color: #8FABF7;
     width:100%;
@@ -63,6 +87,7 @@ table#MenuTable tbody tr{
     width:100%;
     color:#000;
     background-color:#CCC;
+    padding:10px;
 }
 
 #GradesContainer{
@@ -70,6 +95,7 @@ table#MenuTable tbody tr{
     width:100%;
     color:#000;
     background-color:#CCC;
+    padding:10px;
 }
 
 #FinAidContainer{
@@ -77,6 +103,7 @@ table#MenuTable tbody tr{
     width:100%;
     color:#000;
     background-color:#CCC;
+    padding:10px;
 }
 
 #ClassContainer{
@@ -84,6 +111,7 @@ table#MenuTable tbody tr{
     width:100%;
     color:#000;
     background-color:#CCC;
+    padding:10px;
 }
 
 .searchCluster{

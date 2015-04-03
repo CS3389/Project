@@ -9,7 +9,10 @@ class User
    public function __construct($uName,$pass,$r) 
    {
        $this->setUsername($uName);
-       $this->setPassword($pass);
+       
+       //if($pass !== NULL)
+       $this->setPassword($pass);//}
+      // else{$this->password = NULL;}
        $this->setRole($r);
        
    }
@@ -48,5 +51,123 @@ class User
     
 
   }
+  
+  
+        function isAuthorizdToEdit($field)
+        {
+            $role = $_SESSION['usr_role'];
+            
+            switch($field)
+            {
+                case 'studentDem':
+                   switch($role)
+                    {
+                        case 'ADMINISTRATOR':
+                           return true;
+
+                        case 'ADVISOR':
+                            return true;
+
+                        case 'STUDENT':
+                            return false;
+
+                        case 'FINANCIAL':
+                            return false;
+
+                        case 'ACADEMIC':
+                            return false;
+
+                    }
+                    break;
+                
+                case 'Finance':
+                    switch($role)
+                    {
+                        case 'ADMINISTRATOR':
+                           return true;
+
+                        case 'ADVISOR':
+                            return false;
+
+                        case 'STUDENT':
+                            return false;
+
+                        case 'FINANCIAL':
+                            return true;
+
+                        case 'ACADEMIC':
+                            return false;
+
+                    }
+                    break;
+                
+                case 'Grades':
+                    switch($role)
+                    {
+                        case 'ADMINISTRATOR':
+                           return true;
+
+                        case 'ADVISOR':
+                            return false;
+
+                        case 'STUDENT':
+                            return false;
+
+                        case 'FINANCIAL':
+                            return false;
+
+                        case 'ACADEMIC':
+                            return true;
+
+                    }
+                    break;
+                
+                case 'courses':
+                    switch($role)
+                    {
+                        case 'ADMINISTRATOR':
+                           return true;
+
+                        case 'ADVISOR':
+                            return false;
+
+                        case 'STUDENT':
+                            return false;
+
+                        case 'FINANCIAL':
+                            return false;
+
+                        case 'ACADEMIC':
+                            return false;
+
+                    }
+                    break;
+                
+                case 'schedule':
+                    switch($role)
+                    {
+                        case 'ADMINISTRATOR':
+                           return true;
+
+                        case 'ADVISOR':
+                            return true;
+
+                        case 'STUDENT':
+                            return false;
+
+                        case 'FINANCIAL':
+                            return false;
+
+                        case 'ACADEMIC':
+                            return false;
+
+                    }
+                    break;
+                
+                
+            }
+            
+
+        }
+
 }
-?>

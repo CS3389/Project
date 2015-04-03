@@ -25,7 +25,9 @@ class Student
         
         private $currGPA;
         private $classification;
+
      
+
         
     public function __construct($fName, $lName, $dateOB, $addr, $gen, $phone, $actscr,
                          $hs="None", $hsGrad="N/A", $hsGPA="N/A",
@@ -45,6 +47,7 @@ class Student
         $this->setMajor($maj);
         $this->setMinor($min);
 
+
     }// end constructor
     
     // get functions
@@ -61,6 +64,7 @@ class Student
     public function getOtherCollegeAtt(){return $this->otherCollegeAtt;}
     public function getMajor(){return $this->major;}
     public function getMinor(){return $this->minor;}
+    public function getName(){return $this->firstName.' '.$this->lastName;}
     
     public function getCurrGPA(){return $this->currGPA;}
     public function getClassification(){return $this->classification;}
@@ -95,10 +99,12 @@ class Student
         $db = "TaylorU";
         $host = 'localhost';
         $port = 3306; 
-
+        
         $conn ="mysql:host=localhost;dbname=TaylorU";
         $pdo = new PDO($conn, $user, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
         
         $sql = "INSERT INTO ".$db.".Application (firstName, lastName, "
                 . "dob, address, gender, actScore, phoneNumber, highSchoolAtt, "
@@ -130,6 +136,67 @@ class Student
          // creates USER with Student role
         
     }// end function createUser()
+    
+    function search($first, $last, $id)
+    {
+        $user = 'root';
+        $password = 'root';
+        $db = "TaylorU";
+        $host = 'localhost';
+        $port = 3306; 
+        
+        $conn ="mysql:host=localhost;dbname=TaylorU";
+        $pdo = new PDO($conn, $user, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql="";
+        
+        if(strlen($id) !== 0)
+        {
+             $sql = "Select * from ".$db.".Student WHERE Student.studentId =".$id.";";
+        }
+        else if(strlen($first) !== 0 && count($last) !== 0)
+       {
+           
+           $sql = "Select * from ".$db.".Student WHERE Student.firstName ='".$first."' AND ".
+                   "Student.lastName='".$last."';";
+       }
+ else {
+          return "INVALID SEARCH CRITERA"; 
+       }
+       
+           
+        
+       $result = $pdo->query($sql);
+       $row = $result->fetch();
+       $row['classes'] = $this->getClasses($row['studentId']);
+       
+       return $row;
+    }
+    
+    function getClasses($studID)
+    {
+        $user = 'root';
+        $password = 'root';
+        $db = "TaylorU";
+        $host = 'localhost';
+        $port = 3306; 
+        
+        $conn ="mysql:host=localhost;dbname=TaylorU";
+        $pdo = new PDO($conn, $user, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $sql = "Select * from ".$db.".Schedule WHERE Schedule.studId =".$studID.";";
+        
+        $result = $pdo->query($sql);
+       $resArray = $result->fetchAll();
+       
+        return $resArray;
+    }
+    
+    
+    
+    
+    
     
    
 }// end class Student
