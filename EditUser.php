@@ -1,7 +1,8 @@
+<?php $UsrID = $_GET['edit_id']?>
 <html>
     <body>
         <h1><img src="images/taylorUbanner.jpg" alt="Taylor University"></h1>
-        <form method='post' action='UserController.php'  border='0'>
+        <form method='post' action='EditUserController.php?edit_id=<?php echo $UsrID?>'  border='0'>
             <legend> Update User Information</legend>
             
             <table>

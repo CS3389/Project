@@ -10,7 +10,7 @@
         <title>User List</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </heatd>
+    </head>
 <body>
     <h1><img src="images/taylorUbanner.jpg" alt="Taylor University"></h1>   
   <?php
@@ -59,7 +59,7 @@
                 <td> <a href="UserList.php?delete_id=<?php echo $val['UsrID']?>" 
                         onclick="return confirm('Are you sure you want to delete this user?'); " >
                         <button>Delete</button></a></td>
-                <td> <a href="UserList.php?edit_id=<?php echo $val['UsrID']?>" 
+                        <td> <a href="EditUser.php?edit_id=<?php echo $val['UsrID']?>" 
                         onclick="return confirm('Are you sure you want to edit this user?'); " >
                         <button>Edit</button></a></td>
             </tr>

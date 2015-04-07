@@ -3,9 +3,12 @@
 
 include 'User.php';
 
-$theUser = new User($_POST["username"], $_POST["password"]
+$theUser = new User;
+//$theUser = new User($_POST["username"], $_POST["password"]
+  //      , $_POST["role"]);
+
+$theUser->UpdateUser($_GET['edit_id'], $_POST["username"], $_POST["password"]
         , $_POST["role"]);
 
-$theUser->saveUser();
 
 ?>

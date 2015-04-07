@@ -7,6 +7,6 @@ include 'User.php';
 $theUser = new User($_POST["username"], $_POST["password"]
         , $_POST["role"]);
 
-$theUser->saveUser();
+$theUser->saveNewUser();
 
 ?>
