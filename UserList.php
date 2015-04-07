@@ -26,16 +26,7 @@
         
     }
     
-      //edit user by id(Edit button)
-    if(isset($_GET['edit_id']))
-    {
-        $pdo = new PDO($connString, $user, $pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-        $sql="SELECT FROM tayloru.user WHERE UsrID=".$_GET['edit_id'];
-        $result = $pdo->query($sql);
-        
-    }
+    
     
    $pdo = new PDO($connString, $user, $pass);
    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
