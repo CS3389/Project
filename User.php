@@ -61,10 +61,10 @@ class User
     $conn ="mysql:host=localhost;dbname=TaylorU";
     $pdo = new PDO($conn, $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
-    $sql = UPDATE ".$db.".User
+    $sql = "UPDATE ".$db.".User
            SET usrname=$this->username, password=$this->password,
                role=$this->role
-            WHERE UsrID=$_POST(edit_id);
+            WHERE UsrID=$_POST(edit_id);";
     $pdo->exec($sql);
     echo"user added succesfully!";
     echo "<a href='UserList.php'>Back to the user list</a>";
