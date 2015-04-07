@@ -69,7 +69,7 @@ class User
             WHERE UsrID='".$UsrID."';";
     
     $pdo->exec($sql);
-    echo"user added succesfully!";
+    echo"user updated succesfully!";
     echo "<a href='UserList.php'>Back to the user list</a>";
     }
     catch(PDOException $e)
