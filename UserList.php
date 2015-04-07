@@ -14,6 +14,29 @@
 <body>
     <h1><img src="images/taylorUbanner.jpg" alt="Taylor University"></h1>   
   <?php
+  
+     //delete user by id(delete button)
+    if(isset($_GET['delete_id']))
+    {
+        $pdo = new PDO($connString, $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+        $sql="DELETE FROM tayloru.user WHERE UsrID=".$_GET['delete_id'];
+        $result = $pdo->query($sql);
+        
+    }
+    
+      //edit user by id(Edit button)
+    if(isset($_GET['edit_id']))
+    {
+        $pdo = new PDO($connString, $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+        $sql="SELECT FROM tayloru.user WHERE UsrID=".$_GET['edit_id'];
+        $result = $pdo->query($sql);
+        
+    }
+    
    $pdo = new PDO($connString, $user, $pass);
    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       
@@ -33,7 +56,12 @@
             	<td id="UN-<?php echo $rowNum; ?>"><?php echo $val['UsrName'];  ?></td>
                 <td><?php echo $val['Role']; ?></td>
              
-                <td><a href="editUser.php">Edit</a> <input type="button" id="<?php echo $rowNum?>" value="Delete" onclick="postUsrId(this.id)"></td>
+                <td> <a href="UserList.php?delete_id=<?php echo $val['UsrID']?>" 
+                        onclick="return confirm('Are you sure you want to delete this user?'); " >
+                        <button>Delete</button></a></td>
+                <td> <a href="UserList.php?edit_id=<?php echo $val['UsrID']?>" 
+                        onclick="return confirm('Are you sure you want to edit this user?'); " >
+                        <button>Edit</button></a></td>
             </tr>
             <?php endwhile; ?>
             <tr>
@@ -45,35 +73,3 @@
 
 </body>
 </html>
-
-<script>
-    function postUsrId(id)
-    {
-       
-        
-        
-    // Create our XMLHttpRequest object
-    var hr = new XMLHttpRequest();
-    // Create some variables we need to send to our PHP file
-    var url = "deleteUser.php";
-    var usr = document.getElementById('UN-'+id).innerHTML; alert(usr);
-    var vars = "userName="+usr;alert(vars);
-    hr.open("POST", url, true);
-    // Set content type header information for sending url encoded variables in the request
-    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // Access the onreadystatechange event for the XMLHttpRequest object
-    hr.onreadystatechange = function()
-    {
-        alert(hr.readystate); alert(hr.status);
-	    if(hr.readyState == 4 && hr.status == 200) 
-            {
-		    var return_data = hr.responseText;
-			alert(hr.responseText);
-                        window.location.reload();
-	    }
-    }
-    // Send the data to PHP now... and wait for response to update the status div
-    hr.send(vars); // Actually execute the request
-    }
-</script>
-
