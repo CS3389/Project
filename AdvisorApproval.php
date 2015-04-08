@@ -36,7 +36,8 @@
             $user ="root";
             $pass ="root";
             
-            //query database for students with first semesters (Student Table)
+            //query database for students with first semesters = 1(Student Table)
+            // firstSemester: 1 = true, 0 = false
              $pdo = new PDO($connString, $user, $pass);
              $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
              $sql = "SELECT * FROM TaylorU.Student WHERE firstSemester = 1;";
@@ -60,22 +61,23 @@
                    <td>&nbsp;&nbsp;<b>Instructor</b></td>
                    <td>&nbsp;&nbsp;<b>Class Size</b></td>
                 </tr>
-            <!query intermdiate table for each student's courses >
+            <!Query Schedule table for each student's courses >
+            <!Get all courses this particular student has signed up for >
              <?php 
               $pdo2 = new PDO($connString, $user, $pass);
               $pdo2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
               $sqlStudent = "SELECT * FROM TaylorU.Schedule WHERE studentId = ".$studentID.";";
               $resultStudent = $pdo2->query($sqlStudent); 
-              
-              
-              while($valStudent=$resultStudent->fetch()): 
-                  //query courses table to get each course description
+                   
+               while($valStudent=$resultStudent->fetch()): 
+                  
+                  //Query courses table to get each course description
                   $sqlCourse = "SELECT * FROM TaylorU.course WHERE idcourse = ".$valStudent['courseId'].";";
                   $resultCourse = $pdo2->query($sqlCourse); 
                     $valCourse=$resultCourse->fetch();
              ?>
     
-            <!populate table >  
+            <!Populate table with course information >  
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $valCourse['courseTItle'];?></td>
                 <td>&nbsp;&nbsp;<?php echo $valCourse['meetingTime'];?></td>
@@ -86,7 +88,7 @@
             </tr>
    
             <?php 
-                 endwhile;
+                 endwhile; // end inner while statement
              ?> 
             <tr>
                   <!--  Button for an advisor to approve a schedule-->
@@ -96,11 +98,11 @@
                     </table>
            </div>
             <?php
-            endwhile;
+            endwhile; // end outer while statement
             ?>
                 
               <?php
-           //  approve schedule by studentID
+           //  approve schedule by studentID (Approve Button)
            if(isset($_GET['approval_id']))
            {
                
@@ -110,8 +112,6 @@
              $sqlApprove="UPDATE TaylorU.Student SET firstSemester = 0 WHERE studentId =".$_GET['approval_id'].";";
              $pdoApprove->exec($sqlApprove);
              header("Location: AdvisorApproval.php");
-          //   header("Refresh: 0; url= 'http://localhost:8888/Project/AdvisorApproval.php'");
-             
            }
          ?>
 
