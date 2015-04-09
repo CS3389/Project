@@ -110,23 +110,8 @@
                     </table>
            </div>
             <?php
-            endwhile; // end outer while statement
+             endwhile; // end outer while statement
             ?>
-                
-              <?php
-           //  approve schedule by studentID (Approve Button)
-           if(isset($_GET['approval_id']))
-           {
-               
-             $pdoApprove = new PDO($connString, $user, $pass);
-             $pdoApprove->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-             $sqlApprove="UPDATE TaylorU.Student SET firstSemester = 0 WHERE studentId =".$_GET['approval_id'].";";
-             $pdoApprove->exec($sqlApprove);
-             header("Location: AdvisorApproval.php");
-           }
-         ?>
 
-        
     </body>
 </html>
