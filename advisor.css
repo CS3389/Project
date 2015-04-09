@@ -78,3 +78,27 @@ div ul {list-style-type: none;}
                              width: 20px;}
 
 .toggle-box:checked + label:before { content: "\2212";}
+
+#courses { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+           width: 60%;
+           border-collapse: collapse;}
+
+#courses tbody, #courses thead { display: block;}
+
+#courses tbody { height: 115px;
+                 overflow-y: auto;
+                 overflow-x: hidden;}
+
+#courses td, #courses th { font-size: .8em;
+                           border: 1px solid #545454;
+                           padding: 3px 5px 3px 5px;}
+
+#courses th { font-size: .9em;
+              text-align: left;
+              padding-top: 3px;
+              padding-bottom: 2px;
+              background-color: #140399;
+              color: #ffffff;}
+
+#courses tr.alt td {color: #000000;
+    background-color: #D4CCC5;}

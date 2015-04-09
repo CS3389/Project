@@ -135,7 +135,7 @@
                        echo $month.$year.'00'.$appId;
                     }
                 ?>" onclick="return confirm('Are you sure you enroll this person?');" ><button>Enroll</button></a>
-            <a href="Advisor.php?delete_id=<?php echo $val['applicationId']?>" onclick="return confirm('Are you sure you want to delete this application?'); " ><button>Deny</button></a>
+            <a href="Advisor.php?delete_id=<?php echo $val['applicationId']?>" onclick="return confirm('Are you sure you want to delete this application?');" ><button>Deny</button></a>
         </ul></div>
     <?php endwhile; ?>
 
