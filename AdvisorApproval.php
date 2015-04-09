@@ -35,6 +35,18 @@
             $connString = "mysql:host=localhost;dbname=TaylorU";
             $user ="root";
             $pass ="root";
+      
+             //  approve schedule by studentID (Approve Button)
+            if(isset($_GET['approval_id']))
+            {
+               
+              $pdoApprove = new PDO($connString, $user, $pass);
+              $pdoApprove->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+              $sqlApprove="UPDATE TaylorU.Student SET firstSemester = 0 WHERE studentId =".$_GET['approval_id'].";";
+              $pdoApprove->exec($sqlApprove);
+           
+            }
             
             //query database for students with first semesters = 1(Student Table)
             // firstSemester: 1 = true, 0 = false
